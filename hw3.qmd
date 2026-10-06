@@ -1,0 +1,50 @@
+---
+title: "hw3"
+author: "ML"
+format: html
+editor: visual
+---
+
+# Problem 1
+
+## a. Data Import & Merge
+
+```{r}
+1+1
+```
+
+## b. Data Cleaning
+
+## c. Poisson Regression Analysis
+
+1R - Right ear: gender
+
+2R - Right ear: gender, citizenship status (as categorical), number of children (as continuous), annual household income (as continuous)
+
+1L - Left ear: gender
+
+2L - Left ear: gender, citizenship status (as categorical), number of children (as continuous), annual household income (as continuous)
+
+## d. Gender difference
+
+# Problem 2 - Sakila
+
+## a. Store customers
+
+## b. Staff names and countries
+
+## c. Highest_value films
+
+# Problem 3 - Australian Records
+
+## a. Website Domains
+
+## b. Email Domains
+
+## c. Company names
+
+## d. Phone numbers
+
+## e. Apartment numbers
+
+## f. Benford’s law
