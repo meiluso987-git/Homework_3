@@ -10,10 +10,113 @@ editor: visual
 ## a. Data Import & Merge
 
 ```{r}
-1+1
+library(haven)
+library(dplyr)
+library(knitr)
+aux <- read_xpt("AUX_I.xpt.txt")
+demo <- read_xpt("DEMO_I.xpt.txt")
+```
+
+```{r}
+dim(aux)
+dim(demo)
+```
+
+Merge the two files to create a single data.frame.
+
+```{r}
+merged_data <- merge(aux,demo,by = "SEQN")
+# Print dimensions of the merged data frame
+dim(merged_data)
 ```
 
 ## b. Data Cleaning
+
+```{r}
+names(merged_data) <- tolower(names(merged_data))
+
+# Check the required variables
+names(merged_data)[names(merged_data) %in%
+    c("riagendr", "dmdcitzn", "dmdhhsza", "indhhin2")
+]
+```
+
+1.  Gender
+
+```{r}
+#gender
+merged_data$riagendr <- factor(
+  merged_data$riagendr,
+  levels = c(1, 2),
+  labels = c("Male", "Female")
+)
+
+names(merged_data)[names(merged_data) == "riagendr"] <- "gender"
+
+table(merged_data$gender, useNA = "ifany")
+```
+
+2.  Citizenship status
+
+```{r}
+# Citizenship status
+merged_data$dmdcitzn[merged_data$dmdcitzn %in% c(7, 9)] <- NA
+
+merged_data$citizenship <- factor(
+  merged_data$dmdcitzn,
+  levels = c(1, 2),
+  labels = c("Citizen", "Not a citizen")
+)
+
+table(merged_data$citizenship, useNA = "ifany")
+```
+
+3.  Number of children 5 years or younger in the household
+
+```{r}
+# Number of children under 5
+merged_data$numchild <- as.numeric(merged_data$dmdhhsza)
+
+table(merged_data$numchild, useNA = "ifany")
+```
+
+4.  Annual household income
+
+```{r}
+# Annual household income
+merged_data$indhhin2[merged_data$indhhin2 > 15 | merged_data$indhhin2 %in% c(12, 13)] <- NA
+
+# Correct the income category ordering
+merged_data$indhhin2[merged_data$indhhin2 == 14] <- 11
+merged_data$indhhin2[merged_data$indhhin2 == 15] <- 12
+
+# Rename the variable
+merged_data$hhinc <- merged_data$indhhin2
+
+income_labels <- c(
+  "$0-$4,999",
+  "$5,000-$9,999",
+  "$10,000-$14,999",
+  "$15,000-$19,999",
+  "$20,000-$24,999",
+  "$25,000-$34,999",
+  "$35,000-$44,999",
+  "$45,000-$54,999",
+  "$55,000-$64,999",
+  "$65,000-$74,999",
+  "$75,000-$99,999",
+  "$100,000 or more"
+)
+
+merged_data$hhinc <- factor(
+  merged_data$hhinc,
+  levels = 1:12,
+  labels = income_labels,
+  ordered = TRUE
+)
+
+table(merged_data$hhinc, useNA = "ifany")
+```
 
 ## c. Poisson Regression Analysis
 
@@ -25,26 +128,399 @@ editor: visual
 
 2L - Left ear: gender, citizenship status (as categorical), number of children (as continuous), annual household income (as continuous)
 
+```{r}
+mod1r <- glm(auxtwidr ~ gender,data = merged_data,family = poisson(link = "log"))
+mod2r <- glm(auxtwidr ~ gender + citizenship + numchild + indhhin2,data = merged_data,family = poisson(link = "log"))
+mod1l <- glm(auxtwidl ~ gender,data = merged_data,family = poisson(link = "log"))
+mod2l <- glm(auxtwidl ~ gender + citizenship + numchild + indhhin2,data = merged_data,family = poisson(link = "log"))
+```
+
+```{r}
+coeftable <- cbind(c(mod1r$coef, rep(NA, length(mod2r$coef) - length(mod1r$coef))),
+                   mod2r$coef,
+                   c(mod1l$coef, rep(NA, length(mod2l$coef) - length(mod1l$coef))),
+                   mod2l$coef)
+coeftable <- exp(coeftable)
+rownames(coeftable) <- names(mod2l$coef)
+colnames(coeftable) <- c("Model 1R", "Model 2R", "Model 1L", "Model 2L")
+
+# Convert to string to remove NA's
+coeftable <- round(coeftable, 3)
+mode(coeftable) <- "character"
+coeftable[is.na(coeftable)] <- ""
+kable(coeftable, align = "cccc")
+```
+
+```{r}
+library(pscl)
+
+calc_stats <- function(mod) {
+  return(c(
+    length(mod$fitted.values),
+    pR2(mod)["McFadden"],
+    AIC(mod)
+  ))
+}
+
+modfittable <- cbind(
+  calc_stats(mod1r),
+  calc_stats(mod2r),
+  calc_stats(mod1l),
+  calc_stats(mod2l)
+)
+
+modfittable <- round(modfittable, 3)
+mode(modfittable) <- "character"
+colnames(modfittable) <- c("Model 1R", "Model 2R", "Model 1L", "Model 2L")
+rownames(modfittable) <- c("Sample size", "Pseudo R^2", "AIC")
+
+kable(modfittable, align = "cccc")
+```
+
 ## d. Gender difference
+
+```{r}
+names(coef(mod2l))
+exp(coef(mod2l)["genderFemale"])
+summary(mod2l)$coefficients["genderFemale", "Pr(>|z|)"]
+```
+
+So we can find strong evidence of an effect on IRR scale.
+
+```{r}
+library(emmeans)
+emmeans(mod2l, ~ gender, type = "response")
+```
+
+```{r}
+pairs(emmeans(mod2l, ~ gender, type = "response"))
+```
+
+We find strong evidence of an effect.
+
+In both cases, females have a higher value of Tympanometric width measure.
 
 # Problem 2 - Sakila
 
-## a. Store customers
+```{r}
+library(DBI)
+library(RSQLite)
+library(microbenchmark)
+
+con <- dbConnect(SQLite(), "sakila_master.db")
+```
+
+```{r}
+dbListTables(con)
+```
+
+## a. Store customer
+
+```{r}
+dbListFields(con,"customer")
+```
+
+### Method 1:
+
+```{r}
+#' Q1 Method 1: customers per store(R)
+#'
+#' Pulls the `customer` table from the sakila SQLite database, then uses
+#' base-R `aggregate()` to count customers and sum active customers per`store_id`, and derives the active percentage on the resulting `data.frame`. 
+#'
+#' @returns A `data.frame` with one row per store and columns
+#'   `store_id`, `n` (total customers), `n_active` (customers whose
+#'   `active` flag equals '1'), and `pct_active` (100 * n_active / n).
+#' @export
+#'
+#' @examples
+#' q1_R()
+q1_R <- function() {
+  cust <- dbReadTable(con, "customer")          
+  
+  cust$active_num <- as.integer(cust$active)
+  agg <- aggregate(cbind(n = rep(1, nrow(cust)), active_num) ~ store_id,
+                   data = cust, FUN = sum)
+  names(agg)[names(agg) == "active_num"] <- "n_active"
+  agg$pct_active <- 100 * agg$n_active / agg$n
+  agg[order(agg$store_id), c("store_id", "n", "n_active", "pct_active")]
+}
+```
+
+```{r}
+q1_R()
+```
+
+### Method 2:
+
+```{r}
+#' Q1 Method 2: customers per store(SQL)
+#'
+#' Runs a single `GROUP BY store_id` aggregation against the `customer`table. `active` is stored as `CHAR(1)` ('0'/'1'), so it is cast to `INTEGER` inside SQL before summing.
+#'
+#' @returns A `data.frame` with one row per store and columns 
+#' `store_id`, `n`, `n_active`, and `pct_active`. Identical content to [q1_R()].
+#' @export
+#'
+#' @examples
+#' q1_SQL()
+q1_SQL <- function() {
+dbGetQuery(con, "
+    SELECT store_id,
+           COUNT(*) AS n,
+           SUM(CAST(active AS INTEGER)) AS n_active,
+           100.0 * SUM(CAST(active AS INTEGER)) / COUNT(*) AS pct_active
+    FROM customer
+    GROUP BY store_id
+    ORDER BY store_id
+  ")
+}
+```
+
+```{r}
+q1_SQL()
+```
 
 ## b. Staff names and countries
 
+### Method 1:
+
+```{r}
+#' Q2 Method 1: staff names and country(R)
+#'
+#' Pulls four related tables (`staff`, `address`, `city`, `country`) and chains three base-R `merge()` calls to walk the foreign-key path `staff.address_id -> address.city_id -> city.country_id -> country`. No `_list` tables are used.
+#'
+#' @returns A `data.frame` with one row per staff member and columns
+#'   `first_name`, `last_name`, and `country`, ordered by `staff_id`.
+#' @export
+#'
+#' @examples
+#' q2_R()
+q2_R <- function() {
+  staff   <- dbReadTable(con, "staff")
+  address <- dbReadTable(con, "address")
+  city    <- dbReadTable(con, "city")
+  country <- dbReadTable(con, "country")
+
+  out <- merge(staff[, c("staff_id", "first_name", "last_name", "address_id")],
+               address[, c("address_id", "city_id")],
+               by = "address_id")
+  out <- merge(out, city[, c("city_id", "country_id")], by = "city_id")
+  out <- merge(out, country[, c("country_id", "country")], by = "country_id")
+  out[order(out$staff_id), c("first_name", "last_name", "country")]
+}
+```
+
+```{r}
+q2_R()
+```
+
+### Method 2:
+
+```{r}
+#' Q2 Method 2: staff names and country(SQL)
+#'
+#' A single query that `JOIN`s `staff -> address -> city -> country` on the same foreign-key chain used in [q2_R()], letting SQLite do all four-table joins and projection.
+#'
+#' @returns A `data.frame` with one row per staff member and columns
+#'   `first_name`, `last_name`, and `country`, ordered by `staff_id`.
+#'   Identical content to [q2_R()].
+#' @export
+#'
+#' @examples
+#' q2_SQL()
+q2_SQL <- function() {
+dbGetQuery(con,"
+  SELECT s.first_name, s.last_name, co.country
+  FROM staff AS s
+  JOIN address AS a ON s.address_id = a.address_id
+  JOIN city AS ci ON a.city_id = ci.city_id
+  JOIN country AS co ON ci.country_id = co.country_id
+  ORDER BY s.staff_id
+  ")
+}
+```
+
+```{r}
+q2_SQL()
+```
+
 ## c. Highest_value films
+
+### Method 1:
+
+```{r}
+#' Q3 Method 1: film(s) with highest total rental revenue(R)
+#'
+#' Pulls `payment`, `rental`, `inventory`, and `film`, then chains
+#' `merge()` calls along `payment.rental_id -> rental.inventory_id ->
+#' inventory.film_id -> film`. After the joins, `aggregate(amount ~
+#' title, FUN = sum)` computes each film's total revenue, and rows
+#' whose revenue equals the maximum are kept (so ties are all
+#' returned).
+#'
+#' @returns A `data.frame` with columns `title` and `total_revenue`;
+#'   one row for every film whose total rental revenue equals the
+#'   across-the-board maximum.
+#' @export
+#'
+#' @examples
+#' q3_R()
+q3_R <- function() {
+  payment   <- dbReadTable(con, "payment")
+  rental    <- dbReadTable(con, "rental")
+  inventory <- dbReadTable(con, "inventory")
+  film      <- dbReadTable(con, "film")
+
+  # payment -> rental on rental_id
+  pr <- merge(payment[, c("rental_id", "amount")],
+              rental[, c("rental_id", "inventory_id")],
+              by = "rental_id")
+  pri <- merge(pr, inventory[, c("inventory_id", "film_id")],by = "inventory_id")
+  prif <- merge(pri, film[, c("film_id", "title")], by = "film_id")
+
+  rev <- aggregate(amount ~ title, data = prif, FUN = sum)
+  names(rev)[2] <- "total_revenue"
+  rev[rev$total_revenue == max(rev$total_revenue), ]
+}
+```
+
+```{r}
+q3_R()
+```
+
+### Method 2:
+
+```{r}
+#' Q3 Method 2: film(s) with highest total rental revenue(SQL)
+#'
+#' A single query that joins `payment -> rental -> inventory -> film`,
+#' groups by film, and keeps only the groups whose `SUM(amount)` equals
+#' the maximum group total (computed by a subquery). Using
+#' `HAVING ... = (SELECT MAX(s) ...)` rather than `ORDER BY ... LIMIT 1`
+#' means every film tied for first place is returned.
+#'
+#' @returns A `data.frame` with columns `title` and `total_revenue`;
+#'   one row for every film whose total rental revenue equals the
+#'   across-the-board maximum. Identical content to [q3_R()].
+#' @export
+#'
+#' @examples
+#' q3_SQL()
+q3_SQL <- function() {
+dbGetQuery(con, "
+SELECT f.title, SUM(p.amount) AS total_revenue
+FROM payment AS p
+  JOIN rental AS r ON p.rental_id = r.rental_id
+  JOIN inventory AS i ON r.inventory_id = i.inventory_id
+  JOIN film AS f ON i.film_id = f.film_id
+  GROUP BY f.film_id, f.title
+  HAVING SUM(p.amount) = (
+    SELECT MAX(s) FROM (
+      SELECT SUM(p2.amount) AS s
+      FROM payment p2
+      JOIN rental AS r2 ON p2.rental_id = r2.rental_id
+      JOIN inventory AS i2 ON r2.inventory_id = i2.inventory_id
+      GROUP BY i2.film_id
+      )
+  )
+  ORDER BY f.title
+")
+}
+```
+
+```{r}
+q3_SQL()
+```
+
+Compare each approach using microbenchmark:
+
+```{r}
+cat("\n--- Q1 ---\n")
+print(microbenchmark(R = q1_R(),SQL = q1_SQL(),times = 20L))
+```
+
+```{r}
+cat("\n--- Q2 ---\n")
+print(microbenchmark(R = q2_R(),SQL = q2_SQL(),times = 20L))
+```
+
+```{r}
+cat("\n--- Q3 ---\n")
+print(microbenchmark(R = q3_R(),SQL = q3_SQL(),times = 20L))
+```
+
+The data-frame approach uses SQL to extract the required tables and then performs the remaining operations in R. The single-SQL approach performs the joins, aggregations, and calculations directly in the database.
+
+The single-SQL approach wins on every question — most dramatically on Q2, where the SQL lets SQLite do three indexed joins in one pass instead of pulling four tables and running three `merge()` calls in R. Q3's gap is also large because SQLite streams the `payment → rental → inventory → film` join + aggregation without ever materialising the intermediate wide table in R.
 
 # Problem 3 - Australian Records
 
+```{r}
+dat <- read.csv("au-500.csv")
+```
+
 ## a. Website Domains
 
-## b. Email Domains
+```{r}
+mean(grepl("\\.com$", dat$web))
+```
+
+No websites ends in ".com". \## b. Email Domains
+
+```{r}
+email_domain <- sub("^.*@", "", dat$email)
+print(sort(table(email_domain), decreasing = TRUE)[1:10])
+```
+
+The most common domain name is "hotmail.com".
 
 ## c. Company names
 
+```{r}
+mean(grepl("[^a-zA-Z, ]", dat$company_name))
+mean(grepl("[^a-zA-Z,& ]", dat$company_name))
+```
+
 ## d. Phone numbers
+
+```{r}
+reformat_cell <- function(x) {
+  digits <- gsub("\\D", "", x)
+  # expect 10 digits
+  sprintf("%s-%s-%s",
+          substr(digits, 1, 4),
+          substr(digits, 5, 7),
+          substr(digits, 8, 10))
+}
+dat$phone1_cell <- reformat_cell(dat$phone1)
+dat$phone2_cell <- reformat_cell(dat$phone2)
+cat("First 10 phone1 (original -> cell):\n")
+print(data.frame(orig = head(dat$phone1, 10),
+                 cell = head(dat$phone1_cell, 10)))
+cat("\nFirst 10 phone2 (original -> cell):\n")
+print(data.frame(orig = head(dat$phone2, 10),
+                 cell = head(dat$phone2_cell, 10)))
+```
 
 ## e. Apartment numbers
 
+```{r}
+apartments <- dat$address[grepl("[0-9]+$", dat$address)]
+numbers <- sapply(strsplit(apartments, " "), function(x) x[length(x)])
+numbers <- as.numeric(gsub("#", "", numbers))
+hist(log(numbers))
+```
+
+```{r}
+numbers2 <- regmatches(apartments, regexpr("[0-9]+$", apartments))
+hist(log(as.numeric(numbers2)))
+```
+
 ## f. Benford’s law
+
+```{r}
+table(substr(numbers, 1, 1))
+```
+
+This is a uniform distribution, not the decreasing distribution as expected by Benford’s law.
