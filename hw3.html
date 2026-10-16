@@ -111,6 +111,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<p>The website is https://github.com/meiluso987-git/Homework_3</p>
 <section id="problem-1" class="level1">
 <h1>Problem 1</h1>
 <section id="a.-data-import-merge" class="level2">
@@ -209,7 +210,9 @@ Attaching package: 'dplyr'</code></pre>
          3684           884            14 </code></pre>
 </div>
 </div>
-<p>3.Number of children 5 years or younger in the household</p>
+<ol start="3" type="1">
+<li>Number of children 5 years or younger in the household</li>
+</ol>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of children under 5</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>merged_data<span class="sc">$</span>numchild <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(merged_data<span class="sc">$</span>dmdhhsza)</span>
@@ -235,30 +238,29 @@ Attaching package: 'dplyr'</code></pre>
 <span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename the variable</span></span>
 <span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>merged_data<span class="sc">$</span>hhinc <span class="ot">&lt;-</span> merged_data<span class="sc">$</span>indhhin2</span>
 <span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert income categories to a factor</span></span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>income_labels <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"$0-$4,999"</span>,</span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"$5,000-$9,999"</span>,</span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">"$10,000-$14,999"</span>,</span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">"$15,000-$19,999"</span>,</span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">"$20,000-$24,999"</span>,</span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">"$25,000-$34,999"</span>,</span>
-<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>  <span class="st">"$35,000-$44,999"</span>,</span>
-<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>  <span class="st">"$45,000-$54,999"</span>,</span>
-<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>  <span class="st">"$55,000-$64,999"</span>,</span>
-<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>  <span class="st">"$65,000-$74,999"</span>,</span>
-<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>  <span class="st">"$75,000-$99,999"</span>,</span>
-<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>  <span class="st">"$100,000 or more"</span></span>
-<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>merged_data<span class="sc">$</span>hhinc <span class="ot">&lt;-</span> <span class="fu">factor</span>(</span>
-<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>  merged_data<span class="sc">$</span>hhinc,</span>
-<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">levels =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>,</span>
-<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">labels =</span> income_labels,</span>
-<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">ordered =</span> <span class="cn">TRUE</span></span>
-<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(merged_data<span class="sc">$</span>hhinc, <span class="at">useNA =</span> <span class="st">"ifany"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>income_labels <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"$0-$4,999"</span>,</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"$5,000-$9,999"</span>,</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"$10,000-$14,999"</span>,</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">"$15,000-$19,999"</span>,</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">"$20,000-$24,999"</span>,</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">"$25,000-$34,999"</span>,</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">"$35,000-$44,999"</span>,</span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>  <span class="st">"$45,000-$54,999"</span>,</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>  <span class="st">"$55,000-$64,999"</span>,</span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>  <span class="st">"$65,000-$74,999"</span>,</span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>  <span class="st">"$75,000-$99,999"</span>,</span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>  <span class="st">"$100,000 or more"</span></span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>merged_data<span class="sc">$</span>hhinc <span class="ot">&lt;-</span> <span class="fu">factor</span>(</span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>  merged_data<span class="sc">$</span>hhinc,</span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">levels =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>,</span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">labels =</span> income_labels,</span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">ordered =</span> <span class="cn">TRUE</span></span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(merged_data<span class="sc">$</span>hhinc, <span class="at">useNA =</span> <span class="st">"ifany"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
        $0-$4,999    $5,000-$9,999  $10,000-$14,999  $15,000-$19,999 
@@ -285,20 +287,19 @@ Attaching package: 'dplyr'</code></pre>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>mod2l <span class="ot">&lt;-</span> <span class="fu">glm</span>(auxtwidl <span class="sc">~</span> gender <span class="sc">+</span> citizenship <span class="sc">+</span> numchild <span class="sc">+</span> indhhin2,<span class="at">data =</span> merged_data,<span class="at">family =</span> <span class="fu">poisson</span>(<span class="at">link =</span> <span class="st">"log"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>coeftable <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="fu">c</span>(mod1r<span class="sc">$</span>coef, <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="fu">length</span>(mod2r<span class="sc">$</span>coef) <span class="sc">-</span> <span class="fu">length</span>(mod1r<span class="sc">$</span>coef))),</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>                   mod2r<span class="sc">$</span>coef,</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">c</span>(mod1l<span class="sc">$</span>coef, <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="fu">length</span>(mod2l<span class="sc">$</span>coef) <span class="sc">-</span> <span class="fu">length</span>(mod1l<span class="sc">$</span>coef))),</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>                   mod2l<span class="sc">$</span>coef)</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>coeftable <span class="ot">&lt;-</span> <span class="fu">exp</span>(coeftable)</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(coeftable) <span class="ot">&lt;-</span> <span class="fu">names</span>(mod2l<span class="sc">$</span>coef)</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(coeftable) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Model 1R"</span>, <span class="st">"Model 2R"</span>, <span class="st">"Model 1L"</span>, <span class="st">"Model 2L"</span>)</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to string to remove NA's</span></span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>coeftable <span class="ot">&lt;-</span> <span class="fu">round</span>(coeftable, <span class="dv">3</span>)</span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="fu">mode</span>(coeftable) <span class="ot">&lt;-</span> <span class="st">"character"</span></span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>coeftable[<span class="fu">is.na</span>(coeftable)] <span class="ot">&lt;-</span> <span class="st">""</span></span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(coeftable, <span class="at">align =</span> <span class="st">"cccc"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>coeftable <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="fu">c</span>(mod1r<span class="sc">$</span>coef, <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="fu">length</span>(mod2r<span class="sc">$</span>coef) <span class="sc">-</span> <span class="fu">length</span>(mod1r<span class="sc">$</span>coef))),</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>                   mod2r<span class="sc">$</span>coef,</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">c</span>(mod1l<span class="sc">$</span>coef, <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="fu">length</span>(mod2l<span class="sc">$</span>coef) <span class="sc">-</span> <span class="fu">length</span>(mod1l<span class="sc">$</span>coef))),</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>                   mod2l<span class="sc">$</span>coef)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>coeftable <span class="ot">&lt;-</span> <span class="fu">exp</span>(coeftable)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(coeftable) <span class="ot">&lt;-</span> <span class="fu">names</span>(mod2l<span class="sc">$</span>coef)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(coeftable) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Model 1R"</span>, <span class="st">"Model 2R"</span>, <span class="st">"Model 1L"</span>, <span class="st">"Model 2L"</span>)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to string to remove NA's</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>coeftable <span class="ot">&lt;-</span> <span class="fu">round</span>(coeftable, <span class="dv">3</span>)</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="fu">mode</span>(coeftable) <span class="ot">&lt;-</span> <span class="st">"character"</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>coeftable[<span class="fu">is.na</span>(coeftable)] <span class="ot">&lt;-</span> <span class="st">""</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(coeftable, <span class="at">align =</span> <span class="st">"cccc"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <thead>
@@ -472,7 +473,8 @@ Results are averaged over the levels of: citizenship
 Tests are performed on the log scale </code></pre>
 </div>
 </div>
-<p>We find strong evidence of an effect. In both cases, females have a higher value of Tympanometric width measure.</p>
+<p>We find strong evidence of an effect.</p>
+<p>In both cases, females have a higher value of Tympanometric width measure.</p>
 </section>
 </section>
 <section id="problem-2---sakila" class="level1">
@@ -511,26 +513,25 @@ Tests are performed on the log scale </code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' Q1 Method 1: customers per store(R)</span></span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' Pulls the `customer` table from the sakila SQLite database, then uses</span></span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="co">#' base-R `aggregate()` to count customers and sum active customers per</span></span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' `store_id`, and derives the active percentage on the resulting `data.frame`. </span></span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a><span class="co">#' @returns A `data.frame` with one row per store and columns</span></span>
-<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a><span class="co">#'   `store_id`, `n` (total customers), `n_active` (customers whose</span></span>
-<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a><span class="co">#'   `active` flag equals '1'), and `pct_active` (100 * n_active / n).</span></span>
-<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a><span class="co">#' @export</span></span>
-<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a><span class="co">#' @examples</span></span>
-<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a><span class="co">#' q1_R()</span></span>
-<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>q1_R <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>  cust <span class="ot">&lt;-</span> <span class="fu">dbReadTable</span>(con, <span class="st">"customer"</span>)          </span>
-<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a>  cust<span class="sc">$</span>active_num <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(cust<span class="sc">$</span>active)</span>
-<span id="cb46-18"><a href="#cb46-18" aria-hidden="true" tabindex="-1"></a>  agg <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(<span class="fu">cbind</span>(<span class="at">n =</span> <span class="fu">rep</span>(<span class="dv">1</span>, <span class="fu">nrow</span>(cust)), active_num) <span class="sc">~</span> store_id,</span>
-<span id="cb46-19"><a href="#cb46-19" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> cust, <span class="at">FUN =</span> sum)</span>
-<span id="cb46-20"><a href="#cb46-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(agg)[<span class="fu">names</span>(agg) <span class="sc">==</span> <span class="st">"active_num"</span>] <span class="ot">&lt;-</span> <span class="st">"n_active"</span></span>
-<span id="cb46-21"><a href="#cb46-21" aria-hidden="true" tabindex="-1"></a>  agg<span class="sc">$</span>pct_active <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="sc">*</span> agg<span class="sc">$</span>n_active <span class="sc">/</span> agg<span class="sc">$</span>n</span>
-<span id="cb46-22"><a href="#cb46-22" aria-hidden="true" tabindex="-1"></a>  agg[<span class="fu">order</span>(agg<span class="sc">$</span>store_id), <span class="fu">c</span>(<span class="st">"store_id"</span>, <span class="st">"n"</span>, <span class="st">"n_active"</span>, <span class="st">"pct_active"</span>)]</span>
-<span id="cb46-23"><a href="#cb46-23" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="co">#' base-R `aggregate()` to count customers and sum active customers per`store_id`, and derives the active percentage on the resulting `data.frame`. </span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="co">#' @returns A `data.frame` with one row per store and columns</span></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a><span class="co">#'   `store_id`, `n` (total customers), `n_active` (customers whose</span></span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a><span class="co">#'   `active` flag equals '1'), and `pct_active` (100 * n_active / n).</span></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a><span class="co">#' @export</span></span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a><span class="co">#' @examples</span></span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a><span class="co">#' q1_R()</span></span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>q1_R <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>  cust <span class="ot">&lt;-</span> <span class="fu">dbReadTable</span>(con, <span class="st">"customer"</span>)          </span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a>  cust<span class="sc">$</span>active_num <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(cust<span class="sc">$</span>active)</span>
+<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a>  agg <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(<span class="fu">cbind</span>(<span class="at">n =</span> <span class="fu">rep</span>(<span class="dv">1</span>, <span class="fu">nrow</span>(cust)), active_num) <span class="sc">~</span> store_id,</span>
+<span id="cb46-18"><a href="#cb46-18" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> cust, <span class="at">FUN =</span> sum)</span>
+<span id="cb46-19"><a href="#cb46-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(agg)[<span class="fu">names</span>(agg) <span class="sc">==</span> <span class="st">"active_num"</span>] <span class="ot">&lt;-</span> <span class="st">"n_active"</span></span>
+<span id="cb46-20"><a href="#cb46-20" aria-hidden="true" tabindex="-1"></a>  agg<span class="sc">$</span>pct_active <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="sc">*</span> agg<span class="sc">$</span>n_active <span class="sc">/</span> agg<span class="sc">$</span>n</span>
+<span id="cb46-21"><a href="#cb46-21" aria-hidden="true" tabindex="-1"></a>  agg[<span class="fu">order</span>(agg<span class="sc">$</span>store_id), <span class="fu">c</span>(<span class="st">"store_id"</span>, <span class="st">"n"</span>, <span class="st">"n_active"</span>, <span class="st">"pct_active"</span>)]</span>
+<span id="cb46-22"><a href="#cb46-22" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">q1_R</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -546,27 +547,25 @@ Tests are performed on the log scale </code></pre>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' Q1 Method 2: customers per store(SQL)</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' Runs a single `GROUP BY store_id` aggregation against the `customer`</span></span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="co">#' table. `active` is stored as `CHAR(1)` ('0'/'1'), so it is cast to</span></span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' `INTEGER` inside SQL before summing.</span></span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a><span class="co">#' @returns A `data.frame` with one row per store and columns </span></span>
-<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a><span class="co">#' `store_id`, `n`, `n_active`, and `pct_active`. Identical content to [q1_R()].</span></span>
-<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a><span class="co">#' @export</span></span>
-<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a><span class="co">#' @examples</span></span>
-<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a><span class="co">#' q1_SQL()</span></span>
-<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a>q1_SQL <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a><span class="fu">dbGetQuery</span>(con, <span class="st">"</span></span>
-<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a><span class="st">    SELECT store_id,</span></span>
-<span id="cb49-16"><a href="#cb49-16" aria-hidden="true" tabindex="-1"></a><span class="st">           COUNT(*) AS n,</span></span>
-<span id="cb49-17"><a href="#cb49-17" aria-hidden="true" tabindex="-1"></a><span class="st">           SUM(CAST(active AS INTEGER)) AS n_active,</span></span>
-<span id="cb49-18"><a href="#cb49-18" aria-hidden="true" tabindex="-1"></a><span class="st">           100.0 * SUM(CAST(active AS INTEGER)) / COUNT(*) AS pct_active</span></span>
-<span id="cb49-19"><a href="#cb49-19" aria-hidden="true" tabindex="-1"></a><span class="st">    FROM customer</span></span>
-<span id="cb49-20"><a href="#cb49-20" aria-hidden="true" tabindex="-1"></a><span class="st">    GROUP BY store_id</span></span>
-<span id="cb49-21"><a href="#cb49-21" aria-hidden="true" tabindex="-1"></a><span class="st">    ORDER BY store_id</span></span>
-<span id="cb49-22"><a href="#cb49-22" aria-hidden="true" tabindex="-1"></a><span class="st">  "</span>)</span>
-<span id="cb49-23"><a href="#cb49-23" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' Runs a single `GROUP BY store_id` aggregation against the `customer`table. `active` is stored as `CHAR(1)` ('0'/'1'), so it is cast to `INTEGER` inside SQL before summing.</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' @returns A `data.frame` with one row per store and columns </span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a><span class="co">#' `store_id`, `n`, `n_active`, and `pct_active`. Identical content to [q1_R()].</span></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a><span class="co">#' @export</span></span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a><span class="co">#' @examples</span></span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a><span class="co">#' q1_SQL()</span></span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>q1_SQL <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a><span class="fu">dbGetQuery</span>(con, <span class="st">"</span></span>
+<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a><span class="st">    SELECT store_id,</span></span>
+<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a><span class="st">           COUNT(*) AS n,</span></span>
+<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a><span class="st">           SUM(CAST(active AS INTEGER)) AS n_active,</span></span>
+<span id="cb49-16"><a href="#cb49-16" aria-hidden="true" tabindex="-1"></a><span class="st">           100.0 * SUM(CAST(active AS INTEGER)) / COUNT(*) AS pct_active</span></span>
+<span id="cb49-17"><a href="#cb49-17" aria-hidden="true" tabindex="-1"></a><span class="st">    FROM customer</span></span>
+<span id="cb49-18"><a href="#cb49-18" aria-hidden="true" tabindex="-1"></a><span class="st">    GROUP BY store_id</span></span>
+<span id="cb49-19"><a href="#cb49-19" aria-hidden="true" tabindex="-1"></a><span class="st">    ORDER BY store_id</span></span>
+<span id="cb49-20"><a href="#cb49-20" aria-hidden="true" tabindex="-1"></a><span class="st">  "</span>)</span>
+<span id="cb49-21"><a href="#cb49-21" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">q1_SQL</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -585,30 +584,27 @@ Tests are performed on the log scale </code></pre>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' Q2 Method 1: staff names and country(R)</span></span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' Pulls four related tables (`staff`, `address`, `city`, `country`)</span></span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="co">#' and chains three base-R `merge()` calls to walk the foreign-key</span></span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' path `staff.address_id -&gt; address.city_id -&gt; city.country_id -&gt;</span></span>
-<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a><span class="co">#' country`. No `_list` tables are used.</span></span>
-<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a><span class="co">#' @returns A `data.frame` with one row per staff member and columns</span></span>
-<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a><span class="co">#'   `first_name`, `last_name`, and `country`, ordered by `staff_id`.</span></span>
-<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a><span class="co">#' @export</span></span>
-<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a><span class="co">#' @examples</span></span>
-<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a><span class="co">#' q2_R()</span></span>
-<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a>q2_R <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb52-15"><a href="#cb52-15" aria-hidden="true" tabindex="-1"></a>  staff   <span class="ot">&lt;-</span> <span class="fu">dbReadTable</span>(con, <span class="st">"staff"</span>)</span>
-<span id="cb52-16"><a href="#cb52-16" aria-hidden="true" tabindex="-1"></a>  address <span class="ot">&lt;-</span> <span class="fu">dbReadTable</span>(con, <span class="st">"address"</span>)</span>
-<span id="cb52-17"><a href="#cb52-17" aria-hidden="true" tabindex="-1"></a>  city    <span class="ot">&lt;-</span> <span class="fu">dbReadTable</span>(con, <span class="st">"city"</span>)</span>
-<span id="cb52-18"><a href="#cb52-18" aria-hidden="true" tabindex="-1"></a>  country <span class="ot">&lt;-</span> <span class="fu">dbReadTable</span>(con, <span class="st">"country"</span>)</span>
-<span id="cb52-19"><a href="#cb52-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-20"><a href="#cb52-20" aria-hidden="true" tabindex="-1"></a>  out <span class="ot">&lt;-</span> <span class="fu">merge</span>(staff[, <span class="fu">c</span>(<span class="st">"staff_id"</span>, <span class="st">"first_name"</span>, <span class="st">"last_name"</span>, <span class="st">"address_id"</span>)],</span>
-<span id="cb52-21"><a href="#cb52-21" aria-hidden="true" tabindex="-1"></a>               address[, <span class="fu">c</span>(<span class="st">"address_id"</span>, <span class="st">"city_id"</span>)],</span>
-<span id="cb52-22"><a href="#cb52-22" aria-hidden="true" tabindex="-1"></a>               <span class="at">by =</span> <span class="st">"address_id"</span>)</span>
-<span id="cb52-23"><a href="#cb52-23" aria-hidden="true" tabindex="-1"></a>  out <span class="ot">&lt;-</span> <span class="fu">merge</span>(out, city[, <span class="fu">c</span>(<span class="st">"city_id"</span>, <span class="st">"country_id"</span>)], <span class="at">by =</span> <span class="st">"city_id"</span>)</span>
-<span id="cb52-24"><a href="#cb52-24" aria-hidden="true" tabindex="-1"></a>  out <span class="ot">&lt;-</span> <span class="fu">merge</span>(out, country[, <span class="fu">c</span>(<span class="st">"country_id"</span>, <span class="st">"country"</span>)], <span class="at">by =</span> <span class="st">"country_id"</span>)</span>
-<span id="cb52-25"><a href="#cb52-25" aria-hidden="true" tabindex="-1"></a>  out[<span class="fu">order</span>(out<span class="sc">$</span>staff_id), <span class="fu">c</span>(<span class="st">"first_name"</span>, <span class="st">"last_name"</span>, <span class="st">"country"</span>)]</span>
-<span id="cb52-26"><a href="#cb52-26" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' Pulls four related tables (`staff`, `address`, `city`, `country`) and chains three base-R `merge()` calls to walk the foreign-key path `staff.address_id -&gt; address.city_id -&gt; city.country_id -&gt; country`. No `_list` tables are used.</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' @returns A `data.frame` with one row per staff member and columns</span></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a><span class="co">#'   `first_name`, `last_name`, and `country`, ordered by `staff_id`.</span></span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a><span class="co">#' @export</span></span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a><span class="co">#' @examples</span></span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a><span class="co">#' q2_R()</span></span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>q2_R <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>  staff   <span class="ot">&lt;-</span> <span class="fu">dbReadTable</span>(con, <span class="st">"staff"</span>)</span>
+<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a>  address <span class="ot">&lt;-</span> <span class="fu">dbReadTable</span>(con, <span class="st">"address"</span>)</span>
+<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a>  city    <span class="ot">&lt;-</span> <span class="fu">dbReadTable</span>(con, <span class="st">"city"</span>)</span>
+<span id="cb52-15"><a href="#cb52-15" aria-hidden="true" tabindex="-1"></a>  country <span class="ot">&lt;-</span> <span class="fu">dbReadTable</span>(con, <span class="st">"country"</span>)</span>
+<span id="cb52-16"><a href="#cb52-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-17"><a href="#cb52-17" aria-hidden="true" tabindex="-1"></a>  out <span class="ot">&lt;-</span> <span class="fu">merge</span>(staff[, <span class="fu">c</span>(<span class="st">"staff_id"</span>, <span class="st">"first_name"</span>, <span class="st">"last_name"</span>, <span class="st">"address_id"</span>)],</span>
+<span id="cb52-18"><a href="#cb52-18" aria-hidden="true" tabindex="-1"></a>               address[, <span class="fu">c</span>(<span class="st">"address_id"</span>, <span class="st">"city_id"</span>)],</span>
+<span id="cb52-19"><a href="#cb52-19" aria-hidden="true" tabindex="-1"></a>               <span class="at">by =</span> <span class="st">"address_id"</span>)</span>
+<span id="cb52-20"><a href="#cb52-20" aria-hidden="true" tabindex="-1"></a>  out <span class="ot">&lt;-</span> <span class="fu">merge</span>(out, city[, <span class="fu">c</span>(<span class="st">"city_id"</span>, <span class="st">"country_id"</span>)], <span class="at">by =</span> <span class="st">"city_id"</span>)</span>
+<span id="cb52-21"><a href="#cb52-21" aria-hidden="true" tabindex="-1"></a>  out <span class="ot">&lt;-</span> <span class="fu">merge</span>(out, country[, <span class="fu">c</span>(<span class="st">"country_id"</span>, <span class="st">"country"</span>)], <span class="at">by =</span> <span class="st">"country_id"</span>)</span>
+<span id="cb52-22"><a href="#cb52-22" aria-hidden="true" tabindex="-1"></a>  out[<span class="fu">order</span>(out<span class="sc">$</span>staff_id), <span class="fu">c</span>(<span class="st">"first_name"</span>, <span class="st">"last_name"</span>, <span class="st">"country"</span>)]</span>
+<span id="cb52-23"><a href="#cb52-23" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">q2_R</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -624,27 +620,25 @@ Tests are performed on the log scale </code></pre>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' Q2 Method 2: staff names and country(SQL)</span></span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' A single query that `JOIN`s `staff -&gt; address -&gt; city -&gt; country` on</span></span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="co">#' the same foreign-key chain used in [q2_R()], letting SQLite do all</span></span>
-<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' four-table joins and projection.</span></span>
-<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a><span class="co">#' @returns A `data.frame` with one row per staff member and columns</span></span>
-<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a><span class="co">#'   `first_name`, `last_name`, and `country`, ordered by `staff_id`.</span></span>
-<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a><span class="co">#'   Identical content to [q2_R()].</span></span>
-<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a><span class="co">#' @export</span></span>
-<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a><span class="co">#' @examples</span></span>
-<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a><span class="co">#' q2_SQL()</span></span>
-<span id="cb55-14"><a href="#cb55-14" aria-hidden="true" tabindex="-1"></a>q2_SQL <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb55-15"><a href="#cb55-15" aria-hidden="true" tabindex="-1"></a><span class="fu">dbGetQuery</span>(con,<span class="st">"</span></span>
-<span id="cb55-16"><a href="#cb55-16" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT s.first_name, s.last_name, co.country</span></span>
-<span id="cb55-17"><a href="#cb55-17" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM staff AS s</span></span>
-<span id="cb55-18"><a href="#cb55-18" aria-hidden="true" tabindex="-1"></a><span class="st">  JOIN address AS a ON s.address_id = a.address_id</span></span>
-<span id="cb55-19"><a href="#cb55-19" aria-hidden="true" tabindex="-1"></a><span class="st">  JOIN city AS ci ON a.city_id = ci.city_id</span></span>
-<span id="cb55-20"><a href="#cb55-20" aria-hidden="true" tabindex="-1"></a><span class="st">  JOIN country AS co ON ci.country_id = co.country_id</span></span>
-<span id="cb55-21"><a href="#cb55-21" aria-hidden="true" tabindex="-1"></a><span class="st">  ORDER BY s.staff_id</span></span>
-<span id="cb55-22"><a href="#cb55-22" aria-hidden="true" tabindex="-1"></a><span class="st">  "</span>)</span>
-<span id="cb55-23"><a href="#cb55-23" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' A single query that `JOIN`s `staff -&gt; address -&gt; city -&gt; country` on the same foreign-key chain used in [q2_R()], letting SQLite do all four-table joins and projection.</span></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' @returns A `data.frame` with one row per staff member and columns</span></span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a><span class="co">#'   `first_name`, `last_name`, and `country`, ordered by `staff_id`.</span></span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a><span class="co">#'   Identical content to [q2_R()].</span></span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a><span class="co">#' @export</span></span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a><span class="co">#' @examples</span></span>
+<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a><span class="co">#' q2_SQL()</span></span>
+<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a>q2_SQL <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a><span class="fu">dbGetQuery</span>(con,<span class="st">"</span></span>
+<span id="cb55-14"><a href="#cb55-14" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT s.first_name, s.last_name, co.country</span></span>
+<span id="cb55-15"><a href="#cb55-15" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM staff AS s</span></span>
+<span id="cb55-16"><a href="#cb55-16" aria-hidden="true" tabindex="-1"></a><span class="st">  JOIN address AS a ON s.address_id = a.address_id</span></span>
+<span id="cb55-17"><a href="#cb55-17" aria-hidden="true" tabindex="-1"></a><span class="st">  JOIN city AS ci ON a.city_id = ci.city_id</span></span>
+<span id="cb55-18"><a href="#cb55-18" aria-hidden="true" tabindex="-1"></a><span class="st">  JOIN country AS co ON ci.country_id = co.country_id</span></span>
+<span id="cb55-19"><a href="#cb55-19" aria-hidden="true" tabindex="-1"></a><span class="st">  ORDER BY s.staff_id</span></span>
+<span id="cb55-20"><a href="#cb55-20" aria-hidden="true" tabindex="-1"></a><span class="st">  "</span>)</span>
+<span id="cb55-21"><a href="#cb55-21" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">q2_SQL</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -668,33 +662,32 @@ Tests are performed on the log scale </code></pre>
 <span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' inventory.film_id -&gt; film`. After the joins, `aggregate(amount ~</span></span>
 <span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a><span class="co">#' title, FUN = sum)` computes each film's total revenue, and rows</span></span>
 <span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a><span class="co">#' whose revenue equals the maximum are kept (so ties are all</span></span>
-<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a><span class="co">#' returned). The "merge a table more than once" hint is realised by</span></span>
-<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a><span class="co">#' calling `merge()` repeatedly on the growing result.</span></span>
-<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a><span class="co">#' @returns A `data.frame` with columns `title` and `total_revenue`;</span></span>
-<span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a><span class="co">#'   one row for every film whose total rental revenue equals the</span></span>
-<span id="cb58-13"><a href="#cb58-13" aria-hidden="true" tabindex="-1"></a><span class="co">#'   across-the-board maximum.</span></span>
-<span id="cb58-14"><a href="#cb58-14" aria-hidden="true" tabindex="-1"></a><span class="co">#' @export</span></span>
-<span id="cb58-15"><a href="#cb58-15" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb58-16"><a href="#cb58-16" aria-hidden="true" tabindex="-1"></a><span class="co">#' @examples</span></span>
-<span id="cb58-17"><a href="#cb58-17" aria-hidden="true" tabindex="-1"></a><span class="co">#' q3_R()</span></span>
-<span id="cb58-18"><a href="#cb58-18" aria-hidden="true" tabindex="-1"></a>q3_R <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb58-19"><a href="#cb58-19" aria-hidden="true" tabindex="-1"></a>  payment   <span class="ot">&lt;-</span> <span class="fu">dbReadTable</span>(con, <span class="st">"payment"</span>)</span>
-<span id="cb58-20"><a href="#cb58-20" aria-hidden="true" tabindex="-1"></a>  rental    <span class="ot">&lt;-</span> <span class="fu">dbReadTable</span>(con, <span class="st">"rental"</span>)</span>
-<span id="cb58-21"><a href="#cb58-21" aria-hidden="true" tabindex="-1"></a>  inventory <span class="ot">&lt;-</span> <span class="fu">dbReadTable</span>(con, <span class="st">"inventory"</span>)</span>
-<span id="cb58-22"><a href="#cb58-22" aria-hidden="true" tabindex="-1"></a>  film      <span class="ot">&lt;-</span> <span class="fu">dbReadTable</span>(con, <span class="st">"film"</span>)</span>
-<span id="cb58-23"><a href="#cb58-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb58-24"><a href="#cb58-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># payment -&gt; rental on rental_id</span></span>
-<span id="cb58-25"><a href="#cb58-25" aria-hidden="true" tabindex="-1"></a>  pr <span class="ot">&lt;-</span> <span class="fu">merge</span>(payment[, <span class="fu">c</span>(<span class="st">"rental_id"</span>, <span class="st">"amount"</span>)],</span>
-<span id="cb58-26"><a href="#cb58-26" aria-hidden="true" tabindex="-1"></a>              rental[, <span class="fu">c</span>(<span class="st">"rental_id"</span>, <span class="st">"inventory_id"</span>)],</span>
-<span id="cb58-27"><a href="#cb58-27" aria-hidden="true" tabindex="-1"></a>              <span class="at">by =</span> <span class="st">"rental_id"</span>)</span>
-<span id="cb58-28"><a href="#cb58-28" aria-hidden="true" tabindex="-1"></a>  pri <span class="ot">&lt;-</span> <span class="fu">merge</span>(pr, inventory[, <span class="fu">c</span>(<span class="st">"inventory_id"</span>, <span class="st">"film_id"</span>)],<span class="at">by =</span> <span class="st">"inventory_id"</span>)</span>
-<span id="cb58-29"><a href="#cb58-29" aria-hidden="true" tabindex="-1"></a>  prif <span class="ot">&lt;-</span> <span class="fu">merge</span>(pri, film[, <span class="fu">c</span>(<span class="st">"film_id"</span>, <span class="st">"title"</span>)], <span class="at">by =</span> <span class="st">"film_id"</span>)</span>
-<span id="cb58-30"><a href="#cb58-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb58-31"><a href="#cb58-31" aria-hidden="true" tabindex="-1"></a>  rev <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(amount <span class="sc">~</span> title, <span class="at">data =</span> prif, <span class="at">FUN =</span> sum)</span>
-<span id="cb58-32"><a href="#cb58-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(rev)[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="st">"total_revenue"</span></span>
-<span id="cb58-33"><a href="#cb58-33" aria-hidden="true" tabindex="-1"></a>  rev[rev<span class="sc">$</span>total_revenue <span class="sc">==</span> <span class="fu">max</span>(rev<span class="sc">$</span>total_revenue), ]</span>
-<span id="cb58-34"><a href="#cb58-34" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a><span class="co">#' returned).</span></span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a><span class="co">#' @returns A `data.frame` with columns `title` and `total_revenue`;</span></span>
+<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a><span class="co">#'   one row for every film whose total rental revenue equals the</span></span>
+<span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a><span class="co">#'   across-the-board maximum.</span></span>
+<span id="cb58-13"><a href="#cb58-13" aria-hidden="true" tabindex="-1"></a><span class="co">#' @export</span></span>
+<span id="cb58-14"><a href="#cb58-14" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb58-15"><a href="#cb58-15" aria-hidden="true" tabindex="-1"></a><span class="co">#' @examples</span></span>
+<span id="cb58-16"><a href="#cb58-16" aria-hidden="true" tabindex="-1"></a><span class="co">#' q3_R()</span></span>
+<span id="cb58-17"><a href="#cb58-17" aria-hidden="true" tabindex="-1"></a>q3_R <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb58-18"><a href="#cb58-18" aria-hidden="true" tabindex="-1"></a>  payment   <span class="ot">&lt;-</span> <span class="fu">dbReadTable</span>(con, <span class="st">"payment"</span>)</span>
+<span id="cb58-19"><a href="#cb58-19" aria-hidden="true" tabindex="-1"></a>  rental    <span class="ot">&lt;-</span> <span class="fu">dbReadTable</span>(con, <span class="st">"rental"</span>)</span>
+<span id="cb58-20"><a href="#cb58-20" aria-hidden="true" tabindex="-1"></a>  inventory <span class="ot">&lt;-</span> <span class="fu">dbReadTable</span>(con, <span class="st">"inventory"</span>)</span>
+<span id="cb58-21"><a href="#cb58-21" aria-hidden="true" tabindex="-1"></a>  film      <span class="ot">&lt;-</span> <span class="fu">dbReadTable</span>(con, <span class="st">"film"</span>)</span>
+<span id="cb58-22"><a href="#cb58-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-23"><a href="#cb58-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># payment -&gt; rental on rental_id</span></span>
+<span id="cb58-24"><a href="#cb58-24" aria-hidden="true" tabindex="-1"></a>  pr <span class="ot">&lt;-</span> <span class="fu">merge</span>(payment[, <span class="fu">c</span>(<span class="st">"rental_id"</span>, <span class="st">"amount"</span>)],</span>
+<span id="cb58-25"><a href="#cb58-25" aria-hidden="true" tabindex="-1"></a>              rental[, <span class="fu">c</span>(<span class="st">"rental_id"</span>, <span class="st">"inventory_id"</span>)],</span>
+<span id="cb58-26"><a href="#cb58-26" aria-hidden="true" tabindex="-1"></a>              <span class="at">by =</span> <span class="st">"rental_id"</span>)</span>
+<span id="cb58-27"><a href="#cb58-27" aria-hidden="true" tabindex="-1"></a>  pri <span class="ot">&lt;-</span> <span class="fu">merge</span>(pr, inventory[, <span class="fu">c</span>(<span class="st">"inventory_id"</span>, <span class="st">"film_id"</span>)],<span class="at">by =</span> <span class="st">"inventory_id"</span>)</span>
+<span id="cb58-28"><a href="#cb58-28" aria-hidden="true" tabindex="-1"></a>  prif <span class="ot">&lt;-</span> <span class="fu">merge</span>(pri, film[, <span class="fu">c</span>(<span class="st">"film_id"</span>, <span class="st">"title"</span>)], <span class="at">by =</span> <span class="st">"film_id"</span>)</span>
+<span id="cb58-29"><a href="#cb58-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-30"><a href="#cb58-30" aria-hidden="true" tabindex="-1"></a>  rev <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(amount <span class="sc">~</span> title, <span class="at">data =</span> prif, <span class="at">FUN =</span> sum)</span>
+<span id="cb58-31"><a href="#cb58-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(rev)[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="st">"total_revenue"</span></span>
+<span id="cb58-32"><a href="#cb58-32" aria-hidden="true" tabindex="-1"></a>  rev[rev<span class="sc">$</span>total_revenue <span class="sc">==</span> <span class="fu">max</span>(rev<span class="sc">$</span>total_revenue), ]</span>
+<span id="cb58-33"><a href="#cb58-33" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">q3_R</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -764,9 +757,9 @@ accurate nanosecond times to avoid potential integer overflows</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: microseconds
- expr     min       lq     mean   median       uq      max neval
-    R 827.380 836.9535 875.1614 857.2895 882.4635 1121.104    20
-  SQL 119.679 127.3665 158.6884 131.8765 137.0630  639.723    20</code></pre>
+ expr     min       lq     mean   median      uq      max neval
+    R 841.566 857.8430 919.7346 872.0085 950.093 1284.981    20
+  SQL 116.686 124.3735 151.9952 132.1635 139.728  509.179    20</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -778,9 +771,9 @@ accurate nanosecond times to avoid potential integer overflows</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">microbenchmark</span>(<span class="at">R =</span> <span class="fu">q2_R</span>(),<span class="at">SQL =</span> <span class="fu">q2_SQL</span>(),<span class="at">times =</span> <span class="dv">20</span>L))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: microseconds
- expr      min        lq      mean   median       uq      max neval
-    R 1428.071 1453.3270 1510.8746 1477.640 1531.412 1780.548    20
-  SQL   77.285   83.1275  113.3568   88.396   95.694  568.752    20</code></pre>
+ expr      min        lq     mean    median        uq      max neval
+    R 1427.292 1461.3835 1534.923 1489.0380 1585.1420 1773.414    20
+  SQL   79.048   85.0135  113.080   89.9745   97.6005  516.272    20</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -793,8 +786,8 @@ accurate nanosecond times to avoid potential integer overflows</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: milliseconds
  expr      min       lq     mean   median       uq      max neval
-    R 35.15492 35.52336 36.40112 36.11198 37.15922 38.55529    20
-  SQL 27.25885 27.70817 28.01408 27.99111 28.21085 29.24276    20</code></pre>
+    R 35.68402 36.15206 37.00685 36.59336 37.99974 38.67305    20
+  SQL 27.47820 27.88937 28.23757 28.13441 28.39740 29.65723    20</code></pre>
 </div>
 </div>
 <p>The data-frame approach uses SQL to extract the required tables and then performs the remaining operations in R. The single-SQL approach performs the joins, aggregations, and calculations directly in the database.</p>
